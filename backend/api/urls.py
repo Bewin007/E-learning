@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-
+from .views import Hello 
 urlpatterns = [
 
-    # path('register/', RegisterAPI.as_view(), name='register'),
+    path('test', Hello.as_view(), name='register'),
 
 ]
