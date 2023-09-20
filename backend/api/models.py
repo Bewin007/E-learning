@@ -12,7 +12,7 @@ class User(models.Model):
     usertype = models.CharField(max_length=10)
     bank_details = models.ForeignKey(Bank_Details, on_delete=models.SET_NULL, null=True, blank=True)
     join_date = models.DateField(auto_now_add=True)
-    last_login_timestamp = models.DateTimeField(null=True, blank=True)
+    last_login_timestamp = models.DateTimeField(auto_now_add=True)
     dob = models.DateField()
 
 class Expert(models.Model):
@@ -34,7 +34,7 @@ class Gig(models.Model):
 
 class Review(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, blank=True) ##to note
+    client = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True) ##to note
     expert = models.ForeignKey(Expert, on_delete=models.SET_NULL, null=True, blank=True)
     star_rating = models.IntegerField()
     review_text = models.CharField(max_length=2000)
@@ -64,13 +64,13 @@ class Order(models.Model):
     expert = models.ForeignKey(Expert, on_delete=models.SET_NULL, null=True, blank=True)
     gig = models.ForeignKey(Gig, on_delete=models.SET_NULL, null=True, blank=True)
     gig_package = models.ForeignKey(Gig_package, on_delete=models.SET_NULL, null=True, blank=True)
-    # paymentlink 
+    paymentlink = models.CharField(max_length=250)
     ordder_date = models.DateField(auto_now_add=True)
     order_Status = models.CharField(max_length=15)
-    # meeting_date_time =
-    # previous_meeting_date_time
-    # meeting_update_timestamp
-    # payment_type
+    meeting_date_time = models.DateField()
+    previous_meeting_date_time= models.CharField(max_length=1000)
+    meeting_update_timestamp = models.DateTimeField(auto_now_add=True)
+    payment_type = models.CharField(max_length=100)
 
 
 class Expert_Catogery(models.Model):
