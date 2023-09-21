@@ -35,7 +35,7 @@ class Gig(models.Model):
     expert = models.ForeignKey(Expert, on_delete=models.CASCADE)
     title = models.CharField(max_length=40)
     show_case_image = models.ImageField(upload_to='Gig/')
-    description = models.CharField(max_length=300)
+    description = models.TextField()
 
 class Review(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
@@ -45,13 +45,12 @@ class Review(models.Model):
     review_text = models.CharField(max_length=2000)
     review_timestamp = models.DateField(auto_now_add=True)
 
-
 class FAQ(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
     question =models.CharField(max_length= 150)
     answer = models.CharField(max_length=1000)
 
-class Expert(models.Model):
+class Replay(models.Model):
     review = models.ForeignKey(Review, on_delete=models.SET_NULL, null=True, blank=True)
     expert = models.ForeignKey(Expert, on_delete=models.SET_NULL, null=True, blank=True)
     reply = models.CharField(max_length=1000)
@@ -70,10 +69,10 @@ class Order(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.SET_NULL, null=True, blank=True)
     gig_package = models.ForeignKey(Gig_package, on_delete=models.SET_NULL, null=True, blank=True)
     paymentlink = models.CharField(max_length=250)
-    ordder_date = models.DateField(auto_now_add=True)
+    order_date = models.DateField(auto_now_add=True)
     order_Status = models.CharField(max_length=15)
-    meeting_date_time = models.DateField()
-    previous_meeting_date_time= models.CharField(max_length=1000)
+    meeting_date_time = models.DateTimeField()
+    previous_meeting_date_time= models.DateTimeField()
     meeting_update_timestamp = models.DateTimeField(auto_now_add=True)
     payment_type = models.CharField(max_length=100)
 
@@ -95,6 +94,7 @@ class Call_Details(models.Model):
     private = models.BooleanField()
     meet_image = models.ImageField(upload_to='proof/')
     meeting_text = models.TextField()
+    audio = models.FileField(upload_to='proof/')
 
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
