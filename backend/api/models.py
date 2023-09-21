@@ -64,7 +64,7 @@ class Gig_package(models.Model):
     file_attachment = models.BooleanField()
 
 class Order(models.Model):
-    client = models.ForeignKey()
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
     expert = models.ForeignKey(Expert, on_delete=models.SET_NULL, null=True, blank=True)
     gig = models.ForeignKey(Gig, on_delete=models.SET_NULL, null=True, blank=True)
     gig_package = models.ForeignKey(Gig_package, on_delete=models.SET_NULL, null=True, blank=True)
