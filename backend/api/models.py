@@ -1,6 +1,11 @@
 from django.db import models
 
 # Create your models here.
+class Bank_Details(models.Model):
+    account_no = models.IntegerField()
+    bank_name = models.CharField(max_length=50)
+    account_holder_name = models.CharField(max_length=100)
+    ifsc_code = models.CharField(max_length=15)
 
 class User(models.Model):
     username = models.CharField(max_length=30)
@@ -9,7 +14,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
     profile_pic = models.ImageField(upload_to='profile_pic/')
-    usertype = models.CharField(max_length=10)
+    user_type = models.CharField(max_length=10)
     bank_details = models.ForeignKey(Bank_Details, on_delete=models.SET_NULL, null=True, blank=True)
     join_date = models.DateField(auto_now_add=True)
     last_login_timestamp = models.DateTimeField(auto_now_add=True)
@@ -77,19 +82,12 @@ class Expert_Catogery(models.Model):
     expert = models.ForeignKey(Expert, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-class Bank_Details(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    account_no = models.IntegerField(Gig, on_delete=models.CASCADE)
-    bank_name = models.CharField(max_length=50)
-    account_holder_name = models.CharField(max_length=100)
-    ifsc_code = models.CharField(max_length=15)
-
 class Wishlist(models.Model):
-    client = models.ForeignKey(Gig, on_delete=models.CASCADE)
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
 
 class Call_Details(models.Model):
-    client = models.ForeignKey( on_delete=models.CASCADE)###to note
+    client = models.ForeignKey(User, on_delete=models.CASCADE)###to note
     expert = models.ForeignKey(Expert, on_delete=models.CASCADE)
     call_type = models.CharField(max_length=15)
     start_time = models.DateTimeField()
