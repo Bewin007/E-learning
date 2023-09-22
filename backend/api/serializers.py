@@ -15,7 +15,6 @@ class Users_Create_Serializer(serializers.ModelSerializer):
 
 class UsersSerializer(serializers.ModelSerializer):
     bank_details = Bank_Details_Serializer()
-
     class Meta:
         model = User
         fields = '__all__'
@@ -24,3 +23,14 @@ class User_Bank_Update_Serializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['bank_details']
+
+class ExpertSerializer(serializers.ModelSerializer):
+    user = UsersSerializer()
+    class Meta:
+        model = Expert
+        fields = '__all__'
+
+class Expert_Create_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Expert
+        fields = '__all__'

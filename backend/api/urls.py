@@ -12,6 +12,7 @@ urlpatterns = [
     path('user', User_Create.as_view(), name='create-view-edit-user'),
     path('bank', Bank_Detail_api.as_view(), name='register'),
     path('user/<int:user_id>/', User_Create.as_view(), name='edit-use'),
+    path('expert', Expert_api.as_view(), name='create-view-edit-user'),
 ]
 
 
