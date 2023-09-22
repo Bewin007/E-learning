@@ -34,3 +34,20 @@ class Expert_Create_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Expert
         fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+class Gig_Create_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gig
+        fields = '__all__'
+
+class GigSerializer(serializers.ModelSerializer):
+    expert = ExpertSerializer()
+    class Meta:
+        model = Gig
+        fields = '__all__'

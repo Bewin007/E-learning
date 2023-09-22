@@ -9,10 +9,14 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('user', User_Create.as_view(), name='create-view-edit-user'),
+    path('user', User_Create.as_view(), name='create-view-user'),
     path('bank', Bank_Detail_api.as_view(), name='register'),
-    path('user/<int:user_id>/', User_Create.as_view(), name='edit-use'),
-    path('expert', Expert_api.as_view(), name='create-view-edit-user'),
+    path('user/<int:user_id>/', User_Create.as_view(), name='edit-delete-user'),
+    path('expert/<int:user_id>/', Expert_api.as_view(), name='delete-expert'),
+    path('expert', Expert_api.as_view(), name='create-view-expert'),
+    path('catogery', Catogery_api.as_view(), name='create-view-catogery'),
+    path('gig', Gig_api.as_view(), name='create-view-gig'),
+
 ]
 
 

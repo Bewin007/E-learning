@@ -90,3 +90,31 @@ class Expert_api(APIView):
 
         user.delete()
         return Response({"message": "User deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+    
+
+class Catogery_api(APIView):
+    def get(self,request):
+        data = Category.objects.all()
+        serializer = CategorySerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class Gig_api(APIView):
+    def get(self,request):
+        data = Gig.objects.all()
+        serializer = GigSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Gig_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
