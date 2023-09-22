@@ -118,3 +118,16 @@ class Gig_api(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Review_api(APIView):
+    def get(self,request):
+        data = Review.objects.all()
+        serializer = ReviewSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Review_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

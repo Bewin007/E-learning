@@ -51,3 +51,16 @@ class GigSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gig
         fields = '__all__'
+
+class Review_Create_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+class ReviewSerializer(serializers.ModelSerializer):
+    expert = ExpertSerializer()
+    client = UsersSerializer()
+    gig = GigSerializer()
+    class Meta:
+        model = Review
+        fields = '__all__'

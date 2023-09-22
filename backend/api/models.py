@@ -43,7 +43,7 @@ class Review(models.Model):
     expert = models.ForeignKey(Expert, on_delete=models.SET_NULL, null=True, blank=True)
     star_rating = models.IntegerField()
     review_text = models.CharField(max_length=2000)
-    review_timestamp = models.DateField(auto_now_add=True)
+    review_timestamp = models.DateTimeField(auto_now_add=True)
 
 class FAQ(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE)
