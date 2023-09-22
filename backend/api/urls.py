@@ -17,6 +17,14 @@ urlpatterns = [
     path('catogery', Catogery_api.as_view(), name='create-view-catogery'),
     path('gig', Gig_api.as_view(), name='create-view-gig'),
     path('review', Review_api.as_view(), name='create-view-review'),
+    path('faq', FAQ_api.as_view(), name='create-view-review'),
+    path('replay', Replay_api.as_view(), name='create-view-review'),
+    path('gig-package', Gig_package_api.as_view(), name='create-view-review'),
+    path('order', Order_api.as_view(), name='create-view-review'),
+    path('expert-category', Expert_Catogery_api.as_view(), name='create-view-review'),
+    path('wishlist', Wishlist_api.as_view(), name='create-view-review'),
+    path('call', Call_Details_api.as_view(), name='create-view-review'),
+    path('notification', Notification_api.as_view(), name='create-view-review'),
 
 ]
 

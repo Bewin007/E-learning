@@ -131,3 +131,109 @@ class Review_api(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class FAQ_api(APIView):
+    def get(self,request):
+        data = FAQ.objects.all()
+        serializer = FAQSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = FAQ_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Replay_api(APIView):
+    def get(self,request):
+        data = Replay.objects.all()
+        serializer = ReplaySerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Replay_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+class Gig_package_api(APIView):
+    def get(self,request):
+        data = Gig_package.objects.all()
+        serializer = Gig_packageSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Gig_package_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Order_api(APIView):
+    def get(self,request):
+        data = Order.objects.all()
+        serializer = OrderSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Order_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Expert_Catogery_api(APIView):
+    def get(self,request):
+        data = Expert_Catogery.objects.all()
+        serializer = Expert_CatogerySerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Expert_Catogery_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Wishlist_api(APIView):
+    def get(self,request):
+        data = Wishlist.objects.all()
+        serializer = WishlistSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Wishlist_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Call_Details_api(APIView):
+    def get(self,request):
+        data = Call_Details.objects.all()
+        serializer = Call_DetailsSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Call_Details_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class Notification_api(APIView):
+    def get(self,request):
+        data = Notification.objects.all()
+        serializer = NotificationSerializer(data,many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = Notification_Create_Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -60,7 +60,8 @@ class Gig_package(models.Model):
     gig = models.ForeignKey(Gig, on_delete=models.CASCADE) 
     package_type = models.CharField(max_length=10)
     package_description = models.TextField()
-    duration = models.TimeField()
+    duration = models.IntegerField()
+    price = models.IntegerField()
     file_attachment = models.BooleanField()
 
 class Order(models.Model):
