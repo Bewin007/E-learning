@@ -7,6 +7,7 @@ from rest_framework import generics
 
 
 from .serializers import *
+
 class Hello(APIView):
     def get(self, request):
         return Response("Hello")
