@@ -1,13 +1,16 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from .views import * 
+from .viewset import UserViewSet
 
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
 
 
-
-
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+# router.register(r'experts', ExpertViewSet)
 urlpatterns = [
     path('user', User_Create.as_view(), name='create-view-user'),
     path('user/<int:user_id>/', User_Create.as_view(), name='edit-delete-user'),
@@ -25,6 +28,7 @@ urlpatterns = [
     path('wishlist', Wishlist_api.as_view(), name='create-view-review'),
     path('call', Call_Details_api.as_view(), name='create-view-review'),
     path('notification', Notification_api.as_view(), name='create-view-review'),
+    path('api/', include(router.urls)),
 
 ]
 

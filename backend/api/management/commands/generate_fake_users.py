@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Generate fake user data and populate the User model'
 
     def handle(self, *args, **kwargs):
-        for _ in range(10):  # Create 10 fake user records
+        for _ in range(100):  # Create 10 fake user records
             username = fake.user_name()
             email = fake.email()
             password = fake.password(length=8)

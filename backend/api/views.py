@@ -7,6 +7,8 @@ from rest_framework import generics
 
 
 from .serializers import *
+from .models import User
+from .filters import UserFilter
 
 class Hello(APIView):
     def get(self, request):
