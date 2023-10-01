@@ -1,16 +1,19 @@
 from django.contrib import admin
 from django.urls import path,include
 from .views import * 
-from .viewset import UserViewSet
+from .viewset import UserViewSet, ExpertViewSet
 
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 
-
+#filter
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
-# router.register(r'experts', ExpertViewSet)
+router.register(r'experts', ExpertViewSet)
+
+
+
 urlpatterns = [
     path('user', User_Create.as_view(), name='create-view-user'),
     path('user/<int:user_id>/', User_Create.as_view(), name='edit-delete-user'),
