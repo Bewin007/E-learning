@@ -13,7 +13,7 @@ class User(models.Model):
     password = models.CharField(max_length=40)
     first_name = models.CharField(max_length=15)
     last_name = models.CharField(max_length=15)
-    profile_pic = models.ImageField(upload_to='profile_pic/')
+    profile_pic = models.ImageField(upload_to='profile_pic/', null=True)
     user_type = models.CharField(max_length=10)
     bank_details = models.ForeignKey(Bank_Details, on_delete=models.SET_NULL, null=True, blank=True)
     join_date = models.DateField(auto_now_add=True)

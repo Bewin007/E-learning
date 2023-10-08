@@ -240,3 +240,34 @@ class Notification_api(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class User_id_search(APIView):
+    def get(self, request, pk):
+        users = User.objects.filter(id = pk)
+        serialized_users = [UsersSerializer(user).data for user in users]
+        return Response(serialized_users)
+    
+class User_email_search(APIView):
+    def get(self, request, pk):
+        users = User.objects.filter(email = pk)
+        serialized_users = [UsersSerializer(user).data for user in users]
+        return Response(serialized_users)
+    
+
+class User_paging(APIView):
+    def get(self, request):
+        page = int(request.GET.get('page', 1))
+        page_size = 10
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+        queryset = User.objects.all()[start_index:end_index]
+        serializer = UsersSerializer(queryset, many=True)
+        response_data = {
+            'count': User.objects.count(),  # Total number of items
+            'page': page,  # Current page number
+            'page_size': page_size,  # Items per page
+            'results': serializer.data,  # Serialized data
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)

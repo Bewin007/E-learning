@@ -31,6 +31,10 @@ urlpatterns = [
     path('wishlist', Wishlist_api.as_view(), name='create-view-review'),
     path('call', Call_Details_api.as_view(), name='create-view-review'),
     path('notification', Notification_api.as_view(), name='create-view-review'),
+    path('id/<int:pk>', User_id_search.as_view(), name='id-search'),
+    path('email/<str:pk>', User_email_search.as_view(), name='id-email'),
+    path('user-pag/', User_paging.as_view()),
+
     path('api/', include(router.urls)),
 
 ]

@@ -17,3 +17,4 @@ class ExpertViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)  # Use DjangoFilterBackend here
     filterset_class = ExpertFilter
     search_fields = ['display_name', 'expert_experience']
+
