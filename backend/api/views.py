@@ -271,3 +271,19 @@ class User_paging(APIView):
         }
 
         return Response(response_data, status=status.HTTP_200_OK)
+    
+    def post(self, request):
+        page = int(request.data.get('page'))
+        page_size = int(request.data.get('page_size'))
+        start_index = (page - 1) * page_size
+        end_index = start_index + page_size
+        queryset = User.objects.all()[start_index:end_index]
+        serializer = UsersSerializer(queryset, many=True)
+        response_data = {
+            'count': User.objects.count(),  # Total number of items
+            'page': page,  # Current page number
+            'page_size': page_size,  # Items per page
+            'results': serializer.data,  # Serialized data
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
