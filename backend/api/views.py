@@ -263,11 +263,16 @@ class User_paging(APIView):
         end_index = start_index + page_size
         queryset = User.objects.all()[start_index:end_index]
         serializer = UsersSerializer(queryset, many=True)
+        data = User.objects.count()
+        next_page = False
+        if (data/page_size >= page):
+            next_page = True
         response_data = {
-            'count': User.objects.count(),  # Total number of items
+            'count': data,  # Total number of items
             'page': page,  # Current page number
             'page_size': page_size,  # Items per page
             'results': serializer.data,  # Serialized data
+            'next_page': next_page
         }
 
         return Response(response_data, status=status.HTTP_200_OK)
